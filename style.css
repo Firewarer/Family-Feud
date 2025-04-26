@@ -1,121 +1,115 @@
-/* ========================= style.css ========================= */
-
-/* 1. Layout & base styles */
-* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+h1 { margin-bottom: 10px; }
+
+#timer {
+  font-size: 48px;
+  margin: 10px 0 20px;
+}
+
+#question-board {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-header {
-  padding: 1rem;
-  text-align: center;
-  background: #003366;
-  color: white;
-}
-
-/* 2. Board grid */
-#board {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  padding: 1rem;
-}
-
-/* 3. Tile & flip animation (vertical X-axis) */
-.tile {
-  position: relative;
-  perspective: 600px;
-}
-.answer, .cover {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  font-size: 1.2rem;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tile-wrapper {
+  position: relative;
+  width: 300px;
+  height: 60px;
+}
+
+.question-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddd;
+  color: #000;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #333;
   color: white;
-}
-.answer {
-  background: #0055aa;
-  transform: rotateX(-180deg);
-}
-.cover {
-  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border-radius: 6px;
   cursor: pointer;
-}
-.tile.flipped .answer {
-  animation: flip-front 0.6s forwards;
-}
-.tile.flipped .cover {
-  animation: flip-back 0.6s forwards;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 
-@keyframes flip-front {
-  from { transform: rotateX(-180deg); }
-  to   { transform: rotateX(0deg);    }
-}
-@keyframes flip-back {
-  from { transform: rotateX(0deg);    }
-  to   { transform: rotateX(180deg);  }
+.slide-out {
+  transform: translateX(300px);
+  opacity: 0;
 }
 
-/* 4. Footer & buttons */
-footer {
-  padding: 1rem;
-  background: #eee;
-  text-align: center;
+.hidden {
+  display: none !important;
 }
-.scoreboard {
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
+
+#stop-btn,
+#next-btn,
+#back-btn {
+  padding: 10px 20px;
+  font-size: 18px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
 }
-#buzzer-btn {
-  background: #c00;
-  color: white;
+#stop-btn { background: #c00; color: white; }
+#next-btn  { background: #080; color: white; }
+#back-btn  { background: #0066cc; color: white; }
+
+/* Centered TIME’S UP popup */
+#times-up {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  color: red;
   font-weight: bold;
+  z-index: 1000;
+  animation: pop 1s ease;
 }
-#next-btn {
-  background: #008800;
-  color: white;
+@keyframes pop {
+  0%   { transform: scale(0);   opacity: 0; }
+  50%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
 }
 
-/* 5. Wrong-answer “X” overlay */
-#cross-overlay {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 10rem;
-  color: red;
-  display: none;
-  z-index: 1000;
-  pointer-events: none;
+.flash-red {
+  animation: flashRed 1s infinite alternate;
 }
-#cross-overlay.show {
-  display: block;
-  animation: fade-out 1s forwards;
-}
-@keyframes fade-out {
-  0%   { opacity: 1; }
-  80%  { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes flashRed {
+  from { background-color: red;    }
+  to   { background-color: darkred; }
 }

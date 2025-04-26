@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fast Money Round</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Fast Money Round</h1>
+    <div id="timer">30</div>
+
+    <div id="question-board"></div>
+
+    <button id="stop-btn" class="hidden">Stop Timer</button>
+
+    <div id="times-up" class="hidden">TIME'S UP!</div>
+
+    <div id="answer-board" class="hidden">
+      <div id="current-qna"></div>
+      <button id="next-btn">Next Question</button>
+    </div>
+
+    <!-- Return to main site -->
+    <a href="../index.html">
+      <button id="back-btn">Return To Main</button>
+    </a>
+  </div>
+
+  <!-- Sound Effects -->
+  <audio id="start-sound"  src="start.mp3"  preload="auto"></audio>
+  <audio id="tick-sound"   src="tick.mp3"   preload="auto" loop></audio>
+  <audio id="swoosh-sound" src="swoosh.mp3" preload="auto"></audio>
+  <audio id="timesup-sound" src="timesup.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
