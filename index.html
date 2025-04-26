@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Family Feud</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="fast-money-round/fastmoney.html">
+    <button>Start Fast Money Round</button>
+  </a>
+
+  <header>
+    <h1 id="prompt">Loading question…</h1>
+  </header>
+
+  <main id="board">
+    <!-- JS will inject tiles here -->
+  </main>
+
+  <!-- ✖️ Wrong-answer overlay -->
+  <div id="cross-overlay">✖️</div>
+
+  <footer>
+    <div class="buttons">
+      <button id="buzzer-btn">BUZZER</button>
+      <button id="next-btn" disabled>Next Question</button>
+    </div>
+  </footer>
+
+  <!-- Sound effects -->
+  <audio id="ding-sound" src="ding.mp3" preload="auto"></audio>
+  <audio id="buzz-sound" src="buzz.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
